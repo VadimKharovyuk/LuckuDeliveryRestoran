@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Dish</title>
+    <!-- Подключение CSS, если необходимо -->
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+<h1>Add New Dish</h1>
+
+<!-- Форма для добавления нового блюда -->
+<form action="/dishes/add" method="post">
+    <!-- Защита от CSRF-атак -->
+
+
+    <!-- Поле для имени блюда -->
+    <label for="name">Name:</label>
+    <input type="text" name="name" required>
+
+    <!-- Поле для описания -->
+    <label for="description">Description:</label>
+    <textarea name="description" required></textarea>
+
+    <!-- Поле для цены -->
+    <label for="price">Price:</label>
+    <input type="number" name="price" step="0.01" required>
+
+    <!-- Выпадающий список для выбора категории -->
+    <label for="category">Category:</label>
+    <select name="category" required>
+        <option value="">Select a Category</option> <!-- Опция по умолчанию -->
+
+        <!-- Перебор списка категорий и добавление каждой в выпадающий список -->
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.name}">
+        </option>
+    </select>
+
+    <!-- Кнопка для отправки формы -->
+    <button type="submit">Add Dish</button>
+</form>
+</body>
+</html>

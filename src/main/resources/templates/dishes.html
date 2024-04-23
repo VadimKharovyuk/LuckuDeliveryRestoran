@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список всех блюд</title>
+</head>
+<body>
+<h1>Все блюда</h1>
+
+<!-- Список всех блюд -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Цена</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используем Thymeleaf для отображения списка блюд -->
+    <tr th:each="dish : ${dishes}">
+        <td th:text="${dish.id}"></td>
+        <td th:text="${dish.name}"></td>
+        <td th:text="${dish.description}"></td>
+        <td th:text="${dish.price}"></td>
+        <td>
+            <!-- Ссылка на страницу отдельного блюда -->
+            <a th:href="@{'/dishes/' + ${dish.id}}">Просмотреть</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Ссылка для добавления нового блюда -->
+<a href="/dishes/new">Добавить новое блюдо</a>
+</body>
+</html>

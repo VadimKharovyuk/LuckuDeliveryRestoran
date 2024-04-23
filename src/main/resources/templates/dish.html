@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали блюда</title>
+</head>
+<body>
+<h1>Информация о блюде</h1>
+
+<!-- Отображение деталей блюда -->
+<p><strong>Название:</strong> <span th:text="${dish.name}"></span></p>
+<p><strong>Описание:</strong> <span th:text="${dish.description}"></span></p>
+<p><strong>Цена:</strong> <span th:text="${dish.price}"></span></p>
+
+<!-- Ссылка для удаления блюда -->
+<form th:action="@{'/dishes/' + ${dish.id}}" method="post">
+    <input type="hidden" name="_method" value="delete"> <!-- Используем метод DELETE -->
+    <button type="submit">Удалить</button>
+</form>
+
+<!-- Ссылка для возвращения ко всем блюдам -->
+<a href="/dishes">Назад ко всем блюдам</a>
+</body>
+</html>

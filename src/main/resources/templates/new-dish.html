@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавить новое блюдо</title>
+</head>
+<body>
+<h1>Добавить новое блюдо</h1>
+
+<!-- Форма для добавления нового блюда -->
+<form action="/dishes" method="post">
+  <p>
+    <label for="name">Название:</label>
+    <input type="text" id="name" name="name" required>
+  </p>
+  <p>
+    <label for="description">Описание:</label>
+    <textarea id="description" name="description" required></textarea>
+  </p>
+  <p>
+    <label for="price">Цена:</label>
+    <input type="number" id="price" name="price" step="0.01" required>
+  </p>
+  <button type="submit">Добавить блюдо</button>
+</form>
+
+<!-- Ссылка для возвращения ко всем блюдам -->
+<a href="/dishes">Назад ко всем блюдам</a>
+</body>
+</html>

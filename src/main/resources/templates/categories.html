@@ -1,0 +1,57 @@
+<!-- resources/templates/categories.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Categories</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Categories</h1>
+
+<!-- Кнопка для добавления новой категории -->
+<a href="/categories/add">
+    <button>Add New Category</button>
+</a>
+
+<!-- Таблица с категориями -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используем цикл Thymeleaf для отображения всех категорий -->
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.id}"></td>
+        <td th:text="${category.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

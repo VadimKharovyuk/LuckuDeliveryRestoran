@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Details</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+<h1>Order Details</h1>
+
+<!-- Отображение деталей заказа -->
+<table>
+    <tr>
+        <th>Customer Name</th>
+        <td th:text="${order.customerName}"></td>
+    </tr>
+    <tr>
+        <th>Contact Number</th>
+        <td th:text="${order.contactNumber}"></td>
+    </tr>
+    <tr>
+        <th>Delivery Address</th>
+        <td th:text="${order.deliveryAddress}"></td>
+    </tr>
+    <tr>
+        <th>Total Price</th>
+        <td th:text="${order.totalPrice}"></td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td th:text="${order.status}"></td>
+    </tr>
+</table>
+
+<!-- Ссылка на список заказов -->
+<a th:href="@{/orders}">Back to All Orders</a>
+
+</body>
+</html>

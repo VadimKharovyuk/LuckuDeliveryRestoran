@@ -22,5 +22,5 @@ public class Delivery {
 
     private String courierName;
     private String deliveryTime;
-    private String status;
+    private String status; // Например, 'Pending', 'Delivered', 'Cancelled'
 }

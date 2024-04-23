@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Orders</title>
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+<h1>All Orders</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Order ID</th>
+    <th>Customer Name</th>
+    <th>Contact Number</th>
+    <th>Total Price</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Отображение всех заказов -->
+  <tr th:each="order : ${orders}">
+    <td th:text="${order.id}"></td>
+    <td th:text="${order.customerName}"></td>
+    <td th:text="${order.contactNumber}"></td>
+    <td th:text="${order.totalPrice}"></td>
+    <td th:text="${order.status}"></td>
+    <td>
+      <!-- Ссылки на редактирование и удаление -->
+      <a th:href="@{'/orders/' + ${order.id}}">View</a> |
+      <a th:href="@{'/orders/' + ${order.id} + '/edit'}">Edit</a> |
+      <a th:href="@{'/orders/' + ${order.id} + '/delete'}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Ссылка на добавление нового заказа -->
+<a th:href="@{/orders/add}">Add New Order</a>
+
+</body>
+</html>

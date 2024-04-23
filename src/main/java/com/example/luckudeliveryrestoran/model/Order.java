@@ -1,5 +1,6 @@
 package com.example.luckudeliveryrestoran.model;
 
+import com.example.luckudeliveryrestoran.Enum.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,12 +9,12 @@ import lombok.Setter;
 
 import java.util.List;
 
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
-@Entity
-@Table(name = "customer_order") // Имя таблицы для обхода конфликта
+@Setter
+@Table(name = "customer_order") // Избегаем конфликта с зарезервированным словом
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,9 @@ public class Order {
     private String deliveryAddress;
     private String contactNumber;
     private double totalPrice;
-    private String status; // Добавьте поле 'status'
+
+    @Enumerated(EnumType.STRING) // Сохраняем значения Enum как строки
+    private OrderStatus status; // Используем наш Enum для статуса
 
     @ManyToMany
     @JoinTable(
@@ -35,6 +38,4 @@ public class Order {
 
     @OneToOne(mappedBy = "order")
     private Delivery delivery;
-
-    // Getters and setters
 }

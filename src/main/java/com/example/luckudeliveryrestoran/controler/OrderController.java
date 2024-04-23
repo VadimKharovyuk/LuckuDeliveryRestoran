@@ -25,6 +25,20 @@ public class OrderController {
         model.addAttribute("orders", orders);
         return "orders"; // Имя шаблона для отображения заказов
     }
+    // Метод для отображения формы редактирования заказа по ID
+    @GetMapping("/{orderId}/edit")
+    public String editOrder(@PathVariable Long orderId, Model model) {
+        Order order = orderService.getOrder(orderId);
+        model.addAttribute("order", order);
+        return "edit-order"; // Имя шаблона для редактирования заказа
+    }
+
+    // Метод для сохранения изменений заказа после редактирования
+    @PostMapping("/{orderId}/edit")
+    public String updateOrder(@PathVariable Long orderId, @ModelAttribute Order updatedOrder) {
+        orderService.updateOrderStatus(orderId, updatedOrder.getStatus());
+        return "redirect:/orders"; // Перенаправление после сохранения изменений
+    }
 
     @GetMapping("/add")
     public String showAddOrderForm(  Model model) {
@@ -45,6 +59,7 @@ public class OrderController {
         model.addAttribute("orderStatus", order.getStatus());
         return "order-status";  // Шаблон, отображающий статус заказа
     }
+
 
     @PostMapping("/{orderId}/status")
     public String updateOrderStatus(@PathVariable Long orderId, @RequestParam OrderStatus newStatus) {

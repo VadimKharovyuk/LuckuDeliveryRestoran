@@ -80,10 +80,16 @@
 
 <!-- Навигация -->
 <nav>
-  <a href="#menu">Меню</a>
-  <a href="#about">О нас</a>
-  <a href="#contact">Контакты</a>
-  <a href="#delivery">Доставка</a>
+<!--  <a href="#menu">Меню</a>-->
+<!--  <a href="#about">О нас</a>-->
+<!--  <a href="#contact">Контакты</a>-->
+<!--  <a href="#delivery">Доставка</a>-->
+
+  <!-- Добавленные ссылки на контроллеры -->
+  <a th:href="@{/categories}">Категории</a>
+  <a th:href="@{/dishes}">Блюда</a>
+  <a th:href="@{/orders}">Заказы</a>
+  <a th:href="@{/order/status}">Статус доставки</a> <!-- Ссылка на статус доставки -->
 </nav>
 
 <!-- Основные секции -->

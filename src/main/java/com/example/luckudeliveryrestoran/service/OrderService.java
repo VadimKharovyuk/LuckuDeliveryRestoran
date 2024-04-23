@@ -23,11 +23,11 @@ public class OrderService {
     public Order saveOrder(Order order) {
         return orderRepository.save(order);
     }
-    public void updateOrderStatus(Long orderId, OrderStatus newStatus) {
-        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
-        order.setStatus(newStatus);
-        orderRepository.save(order);
-    }
+//    public void updateOrderStatus(Long orderId, OrderStatus newStatus) {
+//        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+//        order.setStatus(newStatus);
+//        orderRepository.save(order);
+//    }
 
     public Order getOrder(Long orderId) {
         // Получаем заказ по ID
@@ -41,6 +41,31 @@ public class OrderService {
             throw new OrderNotFoundException("Order with ID " + orderId + " not found");
         }
     }
+
+    // Метод для обновления заказа по ID
+//    public void updateOrder(Long orderId, Order updatedOrder) {
+//        // Проверка наличия заказа
+//        Order existingOrder = getOrder(orderId);
+//
+//        // Обновление полей заказа
+//        existingOrder.setCustomerName(updatedOrder.getCustomerName());
+//        existingOrder.setDeliveryAddress(updatedOrder.getDeliveryAddress());
+//        existingOrder.setContactNumber(updatedOrder.getContactNumber());
+//        existingOrder.setTotalPrice(updatedOrder.getTotalPrice());
+//        existingOrder.setStatus(updatedOrder.getStatus());
+//        existingOrder.setDishes(updatedOrder.getDishes());
+//
+//        // Сохранение обновленного заказа
+//        orderRepository.save(existingOrder);
+//    }
+
+    public void updateOrderStatus(Long orderId, OrderStatus newStatus) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException("Order not found"));
+        order.setStatus(newStatus);
+        orderRepository.save(order);
+    }
+
 
     // Другие методы для управления заказами
 }

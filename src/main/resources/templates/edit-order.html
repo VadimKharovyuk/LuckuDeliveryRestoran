@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Details</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+<h1 th:text="'Order Details: ' + ${order.id}"></h1> <!-- Заголовок с ID заказа -->
+
+<!-- Отображение деталей заказа -->
+<p>
+    <strong>Customer Name:</strong>
+    <span th:text="${order.customerName}"></span>
+</p>
+
+<p>
+    <strong>Delivery Address:</strong>
+    <span th:text="${order.deliveryAddress}"></span>
+</p>
+
+<p>
+    <strong>Contact Number:</strong>
+    <span th:text="${order.contactNumber}"></span>
+</p>
+
+<p>
+    <strong>Total Price:</strong>
+    <span th:text="${order.totalPrice}"></span>
+</p>
+
+<p>
+    <strong>Status:</strong>
+    <span th:text="${order.status}"></span>
+</p>
+
+<!-- Ссылка для редактирования заказа -->
+<a th:href="@{'/orders/' + ${order.id} + '/edit'}" th:text="'Edit Order'"></a>
+
+<!-- Ссылка для возврата к списку заказов -->
+<a th:href="@{/orders}" th:text="'Back to Orders'"></a>
+</body>
+</html>

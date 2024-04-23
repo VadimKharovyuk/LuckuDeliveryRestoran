@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Order Status</title>
+</head>
+<body>
+<form th:action="@{/orders/{orderId}/status(orderId=${order.id})}" method="post">
+    <select th:name="newStatus">
+        <option th:value="PENDING" th:text="'Pending'"></option>
+        <option th:value="DELIVERED" th:text="'Delivered'"></option>
+        <option th:value="CANCELLED" th:text="'Cancelled'"></option>
+    </select>
+    <button type="submit" th:text="'Update Status'"></button>
+</form>
+</body>
+</html>

@@ -38,6 +38,7 @@
 
 <!-- Форма для обновления статуса заказа -->
 <form th:action="@{/orders/{orderId}/status(orderId=${order.id})}" method="post">
+
     <!-- Выпадающий список для выбора статуса -->
     <select th:name="newStatus">
         <option th:value="PENDING" th:text="'Pending'"></option>

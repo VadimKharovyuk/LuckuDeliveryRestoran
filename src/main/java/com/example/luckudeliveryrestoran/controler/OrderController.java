@@ -25,6 +25,7 @@ public class OrderController {
         model.addAttribute("orders", orders);
         return "orders"; // Имя шаблона для отображения заказов
     }
+
     // Метод для отображения формы редактирования заказа по ID
     @GetMapping("/{orderId}/edit")
     public String editOrder(@PathVariable Long orderId, Model model) {
@@ -77,6 +78,16 @@ public class OrderController {
             return "error/404";  // Имя шаблона для страницы 404
         }
     }
+    // Метод для обработки запроса на удаление заказа по его ID
+    @PostMapping("/{orderId}/delete")
+    public String deleteOrder(@PathVariable Long orderId, Model model) {
+        // Удаление заказа с помощью сервиса
+        orderService.deleteOrder(orderId);
+
+        // Перенаправление к списку заказов после успешного удаления
+        return "redirect:/orders";
+    }
+
 
     // Другие методы для редактирования, удаления и просмотра заказов
 }

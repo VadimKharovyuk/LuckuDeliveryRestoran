@@ -44,6 +44,19 @@
     a:hover {
       text-decoration: underline;  /* Подчеркивание при наведении */
     }
+    .delete-button {
+      background-color: #ff4d4d;  /* Красный цвет для фона */
+      color: white;  /* Белый цвет текста */
+      padding: 10px 20px;  /* Внутренние отступы */
+      border: none;  /* Без границ */
+      border-radius: 5px;  /* Скругленные углы */
+      cursor: pointer;  /* Курсор в виде руки при наведении */
+      transition: background-color 0.3s;  /* Плавный переход при наведении */
+    }
+
+    .delete-button:hover {
+      background-color: #ff1a1a;  /* Более насыщенный красный при наведении */
+    }
 
   </style>
 </head>
@@ -74,7 +87,10 @@
       <!-- Ссылки на действия -->
       <a th:href="@{'/orders/' + ${order.id}}">View</a> |  <!-- Просмотр заказа -->
       <a th:href="@{'/orders/' + ${order.id} + '/edit'}">Edit</a> |  <!-- Редактирование -->
-      <a th:href="@{'/orders/' + ${order.id} + '/delete'}">Delete</a>  <!-- Удаление -->
+      <form th:action="@{'/orders/' + ${order.id} + '/delete'}" method="post">
+        <input type="hidden" name="_method" value="delete">  <!-- Имитирует метод DELETE -->
+        <button type="submit" class="delete-button">Delete</button>  <!-- Кнопка с классом для стиля -->
+      </form>
     </td>
   </tr>
   </tbody>

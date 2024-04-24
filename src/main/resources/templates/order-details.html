@@ -1,51 +1,113 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Order Details</title>-->
+<!--    <link rel="stylesheet" type="text/css" href="/static/styles.css">  &lt;!&ndash; Подключение CSS &ndash;&gt;-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f5f5f5;-->
+<!--            padding: 20px;-->
+<!--            text-align: center;  /* Центрирует все элементы в body */-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            color: #333;-->
+<!--            font-size: 24px;-->
+<!--        }-->
+
+<!--        table {-->
+<!--            margin: 20px auto;  /* Центрирует таблицу по горизонтали */-->
+<!--            border-collapse: collapse;  /* Убирает промежутки между ячейками */-->
+<!--        }-->
+
+<!--        th, td {-->
+<!--            padding: 10px;-->
+<!--            border: 1px solid #ccc;  /* Границы ячеек */-->
+<!--            text-align: left;  /* Выравнивание текста влево */-->
+<!--        }-->
+
+<!--        th {-->
+<!--            background-color: #ddd;  /* Цвет фона заголовков */-->
+<!--        }-->
+
+<!--        a {-->
+<!--            color: #3498db;-->
+<!--            text-decoration: none;-->
+<!--            padding: 10px;-->
+<!--        }-->
+
+<!--        a:hover {-->
+<!--            text-decoration: underline;  /* Подчеркивание при наведении */-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Order Details</h1>  &lt;!&ndash; Заголовок страницы &ndash;&gt;-->
+
+<!--&lt;!&ndash; Таблица с деталями заказа &ndash;&gt;-->
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>Customer Name</th>-->
+<!--        <td th:text="${order.customerName}"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <th>Contact Number</th>-->
+<!--        <td th:text="${order.contactNumber}"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <th>Delivery Address</th>-->
+<!--        <td th:text="${order.deliveryAddress}"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <th>Total Price</th>-->
+<!--        <td th:text="${order.totalPrice}"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <th>Status</th>-->
+<!--        <td th:text="${order.status}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<!--&lt;!&ndash; Ссылка для возврата к списку всех заказов &ndash;&gt;-->
+<!--<a th:href="@{/orders}">Back to All Orders</a>  &lt;!&ndash; Стиль ссылки обновлен &ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Order Details</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">  <!-- Подключение CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <style>
+        /* Стилизационные изменения */
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             padding: 20px;
-            text-align: center;  /* Центрирует все элементы в body */
-        }
-
-        h1 {
-            color: #333;
-            font-size: 24px;
+            text-align: center;
         }
 
         table {
-            margin: 20px auto;  /* Центрирует таблицу по горизонтали */
-            border-collapse: collapse;  /* Убирает промежутки между ячейками */
+            margin: 20px auto;
+            border-collapse: collapse;
         }
 
         th, td {
             padding: 10px;
-            border: 1px solid #ccc;  /* Границы ячеек */
-            text-align: left;  /* Выравнивание текста влево */
+            border: 1px solid #ccc;
         }
 
         th {
-            background-color: #ddd;  /* Цвет фона заголовков */
+            background-color: #ddd;
         }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-            padding: 10px;
-        }
-
-        a:hover {
-            text-decoration: underline;  /* Подчеркивание при наведении */
-        }
-
     </style>
 </head>
 <body>
-<h1>Order Details</h1>  <!-- Заголовок страницы -->
+<h1>Order Details</h1>
 
 <!-- Таблица с деталями заказа -->
 <table>
@@ -67,11 +129,20 @@
     </tr>
     <tr>
         <th>Status</th>
-        <td th:text="${order.status}"></td>
+        <!-- Вывод текущего статуса -->
+        <td>
+            <!-- Выпадающий список для выбора нового статуса -->
+            <form th:action="@{/orders/{orderId}/updateStatus(orderId=${order.id})}" method="post">
+                <select th:name="newStatus">
+                    <option th:each="status : ${orderStatuses}" th:value="${status}" th:text="${status}" selected="${status.equals(order.status)}"></option>
+                </select>
+                <button type="submit">Update Status</button>
+            </form>
+        </td>
     </tr>
 </table>
 
-<!-- Ссылка для возврата к списку всех заказов -->
-<a th:href="@{/orders}">Back to All Orders</a>  <!-- Стиль ссылки обновлен -->
+<!-- Ссылка для возврата ко всем заказам -->
+<a th:href="@{/orders}">Back to All Orders</a>
 </body>
 </html>

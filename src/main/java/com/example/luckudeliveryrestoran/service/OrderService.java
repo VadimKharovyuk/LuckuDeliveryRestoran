@@ -70,6 +70,16 @@ public class OrderService {
         orderRepository.deleteById(orderId);
     }
 
+    public void updateOrder(Order order) {
+        // Проверяем, что заказ существует в базе данных
+        if (orderRepository.existsById(order.getId())) {
+            // Если заказ существует, обновляем его данные
+            orderRepository.save(order);  // Сохраняем изменения в базе данных
+        } else {
+            throw new OrderNotFoundException("Order with ID " + order.getId() + " not found.");  // Ошибка, если заказа нет
+        }
+    }
+
 
     // Другие методы для управления заказами
 }

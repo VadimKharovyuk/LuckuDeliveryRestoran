@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Details</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"> <!-- Подключение CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center; /* Центрирует заголовок */
+        }
+
+        table {
+            margin: 20px auto; /* Центрирует таблицу */
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd; /* Добавляет границы */
+        }
+
+        th {
+            background-color: #f0f0f0; /* Цвет фона заголовков */
+            text-align: left;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db; /* Цвет ссылок */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Подчеркивание при наведении */
+        }
+    </style>
+</head>
+<body>
+<h1>Report Details</h1> <!-- Заголовок страницы -->
+
+<!-- Таблица с деталями конкретного отчета -->
+<table>
+    <tr>
+        <th>Report ID</th>
+        <td th:text="${report.id}"></td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td th:text="${report.date}"></td>
+    </tr>
+    <tr>
+        <th>Total Sales</th>
+        <td th:text="${report.totalSales}"></td>
+    </tr>
+    <tr>
+        <th>Most Popular Dish</th>
+        <td th:text="${report.mostPopularDish}"></td>
+    </tr>
+    <tr>
+        <th>Average Delivery Time</th>
+        <td th:text="${report.averageDeliveryTime}"></td>
+    </tr>
+</table>
+
+<!-- Ссылка для возврата к списку отчетов -->
+<a th:href="@{/reports}">Back to Report List</a> <!-- Ссылка для возврата к списку всех отчетов -->
+
+</body>
+</html>

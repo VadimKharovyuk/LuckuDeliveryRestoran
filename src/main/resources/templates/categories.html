@@ -1,55 +1,75 @@
-<!-- resources/templates/categories.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>All Categories</title>
+    <!-- Подключение CSS -->
     <style>
+        /* Базовый стиль для таблицы */
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;  /* Отступ сверху для таблицы */
         }
 
+        /* Общие стили для границ и отступов */
         table, th, td {
-            border: 1px solid black;
+            border: 1px solid #ddd;  /* Границы мягкого серого цвета */
         }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
+        /* Стили для заголовков таблицы */
         th {
-            background-color: #f2f2f2;
+            background-color: #f2f2f2;  /* Светло-серый фон для заголовков */
+            padding: 12px;  /* Отступы в заголовках */
+            text-align: left;  /* Выравнивание текста влево */
         }
 
+        /* Стили для строк и ячеек таблицы */
+        td {
+            padding: 10px;  /* Отступы внутри ячеек */
+            text-align: left;  /* Выравнивание текста влево */
+        }
+
+        /* Чередование цветов для строк таблицы */
         tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #f9f9f9;  /* Светлый фон для четных строк */
+        }
+
+        /* Стиль кнопки для добавления новой категории */
+        .btn {
+            background-color: #4CAF50;  /* Зеленый фон кнопки */
+            color: white;  /* Белый цвет текста */
+            padding: 10px 20px;  /* Отступы внутри кнопки */
+            border: none;  /* Без границ */
+            border-radius: 5px;  /* Закругленные углы */
+            text-decoration: none;  /* Убираем подчеркивание */
+            cursor: pointer;  /* Изменение курсора на указатель при наведении */
+        }
+
+        .btn:hover {
+            background-color: #45a049;  /* Более темный зеленый при наведении */
         }
     </style>
-
 </head>
 <body>
-<h1>Categories</h1>
+<h1>All Categories</h1>  <!-- Заголовок страницы -->
 
 <!-- Кнопка для добавления новой категории -->
-<a href="/categories/add">
-    <button>Add New Category</button>
-</a>
+<a href="/categories/add" class="btn">Add New Category</a>  <!-- Используем класс 'btn' для кнопки -->
 
 <!-- Таблица с категориями -->
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Name</th>  <!-- Заголовок для имени категории -->
     </tr>
     </thead>
     <tbody>
-    <!-- Используем цикл Thymeleaf для отображения всех категорий -->
+    <!-- Отображение всех категорий -->
     <tr th:each="category : ${categories}">
         <td th:text="${category.id}"></td>
-        <td th:text="${category.name}"></td>
+        <td th:text="${category.name}"></td>  <!-- Имя категории -->
     </tr>
     </tbody>
 </table>

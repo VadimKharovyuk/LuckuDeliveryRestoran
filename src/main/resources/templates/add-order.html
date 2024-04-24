@@ -4,34 +4,81 @@
     <meta charset="UTF-8">
     <title>Add New Order</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css"> <!-- Подключение стилей -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .input-text {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .button-primary {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-primary:hover {
+            background-color: #45a049;
+        }
+
+    </style>
 </head>
 <body>
-<h1>Add New Order</h1>
+<div class="container"> <!-- Используем контейнер для центрирования -->
+    <h1>Add New Order</h1>
 
-<!-- Форма для добавления нового заказа -->
-<form th:action="@{/orders/add}" th:object="${order}" method="post">
-    <!-- Защита от CSRF -->
+    <!-- Форма для добавления нового заказа -->
+    <form th:action="@{/orders/add}" th:object="${order}" method="post">
+        <!-- Защита от CSRF -->
+        <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
 
+        <!-- Поля привязаны к объекту 'Order' -->
+        <div>
+            <label for="customerName">Customer Name:</label>
+            <input type="text" id="customerName" th:field="*{customerName}" class="input-text" required>
+        </div>
 
-    <!-- Поля привязаны к объекту 'Order' -->
-    <div>
-        <label for="customerName">Customer Name:</label>
-        <input type="text" id="customerName" th:field="*{customerName}" required>
-    </div>
+        <div>
+            <label for="deliveryAddress">Delivery Address:</label>
+            <input type="text" id="deliveryAddress" th:field="*{deliveryAddress}" class="input-text" required>
+        </div>
 
-    <div>
-        <label for="deliveryAddress">Delivery Address:</label>
-        <input type="text" id="deliveryAddress" th:field="*{deliveryAddress}" required>
-    </div>
+        <div>
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" id="contactNumber" th:field="*{contactNumber}" class="input-text" required>
+        </div>
 
-    <div>
-        <label for="contactNumber">Contact Number:</label>
-        <input type="text" id="contactNumber" th:field="*{contactNumber}" required>
-    </div>
-
-    <!-- Кнопка отправки формы -->
-    <button type="submit">Add Order</button>
-</form>
-
+        <!-- Кнопка для отправки формы -->
+        <button type="submit" class="button-primary">Add Order</button>
+    </form>
+</div>
 </body>
 </html>

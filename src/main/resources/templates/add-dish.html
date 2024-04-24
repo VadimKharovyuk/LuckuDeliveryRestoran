@@ -3,43 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Dish</title>
-    <!-- Подключение CSS, если необходимо -->
+    <!-- Подключение CSS -->
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex; /* Используем flexbox */
+            justify-content: center; /* Центрируем по горизонтали */
+            align-items: center; /* Центрируем по вертикали */
+            height: 100vh; /* Полная высота страницы */
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            text-align: center; /* Центрируем заголовок */
+        }
+
+        .input-text {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px; /* Отступы между элементами */
+        }
+
+        .button-primary {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-primary:hover {
+            background-color: #45a049;
+        }
+
+    </style>
 </head>
 <body>
-<h1>Add New Dish</h1>
+<div class="container"> <!-- Центрируем с помощью контейнера -->
+    <h1>Добавить новое Блюдо</h1>
 
-<!-- Форма для добавления нового блюда -->
-<form action="/dishes/add" method="post">
-    <!-- Защита от CSRF-атак -->
+    <!-- Форма для добавления нового блюда -->
+    <form action="/dishes/add" method="post">
+        <!-- Защита от CSRF -->
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
 
+        <!-- Поле для имени блюда -->
+        <label for="name">Name:</label>
+        <input type="text" name="name" class="input-text" required>
 
-    <!-- Поле для имени блюда -->
-    <label for="name">Name:</label>
-    <input type="text" name="name" required>
+        <!-- Поле для описания -->
+        <label for="description">Description:</label>
+        <textarea name="description" required class="input-text"></textarea>
 
-    <!-- Поле для описания -->
-    <label for="description">Description:</label>
-    <textarea name="description" required></textarea>
+        <!-- Поле для цены -->
+        <label for="price">Price:</label>
+        <input type="number" name="price" step="0.01" class="input-text" required>
 
-    <!-- Поле для цены -->
-    <label for="price">Price:</label>
-    <input type="number" name="price" step="0.01" required>
+        <!-- Выпадающий список для выбора категории -->
+        <label for="category">Category:</label>
+        <select name="category" class="input-text" required>
+            <option value="">Select a Category</option>
 
-    <!-- Выпадающий список для выбора категории -->
-    <label for="category">Category:</label>
-    <select name="category" required>
-        <option value="">Select a Category</option> <!-- Опция по умолчанию -->
+            <!-- Перебор категорий -->
+            <option th:each="category : ${categories}"
+                    th:value="${category.id}"
+                    th:text="${category.name}">
+            </option>
+        </select>
 
-        <!-- Перебор списка категорий и добавление каждой в выпадающий список -->
-        <option th:each="category : ${categories}"
-                th:value="${category.id}"
-                th:text="${category.name}">
-        </option>
-    </select>
-
-    <!-- Кнопка для отправки формы -->
-    <button type="submit">Add Dish</button>
-</form>
+        <!-- Кнопка для отправки формы -->
+        <button type="submit" class="button-primary">Add Dish</button>
+    </form>
+</div>
 </body>
 </html>

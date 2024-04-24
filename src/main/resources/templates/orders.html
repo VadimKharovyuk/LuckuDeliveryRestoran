@@ -3,11 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <title>All Orders</title>
-  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">  <!-- Подключение CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      text-align: center;  /* Центрирование содержимого в body */
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;  /* Добавление отступа после заголовка */
+    }
+
+    table {
+      width: 100%;  /* Таблица занимает всю ширину */
+      border-collapse: collapse;  /* Убираем промежутки между ячейками */
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;  /* Границы для таблицы, заголовков и ячеек */
+    }
+
+    th {
+      background-color: #e0e0e0;  /* Цвет фона заголовков */
+      padding: 10px;  /* Отступы внутри ячеек заголовков */
+      text-align: left;  /* Выравнивание текста в заголовках */
+    }
+
+    td {
+      padding: 10px;  /* Отступы внутри ячеек таблицы */
+    }
+
+    a {
+      color: #4CAF50;  /* Цвет ссылок */
+      text-decoration: none;  /* Убираем подчеркивание у ссылок */
+    }
+
+    a:hover {
+      text-decoration: underline;  /* Подчеркивание при наведении */
+    }
+
+  </style>
 </head>
 <body>
-<h1>All Orders</h1>
+<h1>All Orders</h1>  <!-- Заголовок страницы -->
 
+<!-- Таблица для отображения всех заказов -->
 <table>
   <thead>
   <tr>
@@ -16,7 +59,7 @@
     <th>Contact Number</th>
     <th>Total Price</th>
     <th>Status</th>
-    <th>Actions</th>
+    <th>Actions</th>  <!-- Заголовок колонки с действиями -->
   </tr>
   </thead>
   <tbody>
@@ -28,16 +71,16 @@
     <td th:text="${order.totalPrice}"></td>
     <td th:text="${order.status}"></td>
     <td>
-      <!-- Ссылки на редактирование и удаление -->
-      <a th:href="@{'/orders/' + ${order.id}}">View</a> |
-      <a th:href="@{'/orders/' + ${order.id} + '/edit'}">Edit</a> |
-      <a th:href="@{'/orders/' + ${order.id} + '/delete'}">Delete</a>
+      <!-- Ссылки на действия -->
+      <a th:href="@{'/orders/' + ${order.id}}">View</a> |  <!-- Просмотр заказа -->
+      <a th:href="@{'/orders/' + ${order.id} + '/edit'}">Edit</a> |  <!-- Редактирование -->
+      <a th:href="@{'/orders/' + ${order.id} + '/delete'}">Delete</a>  <!-- Удаление -->
     </td>
   </tr>
   </tbody>
 </table>
 
-<!-- Ссылка на добавление нового заказа -->
+<!-- Ссылка для добавления нового заказа -->
 <a th:href="@{/orders/add}">Add New Order</a>
 
 </body>

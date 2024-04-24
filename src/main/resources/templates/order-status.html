@@ -3,14 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Order Status</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">  <!-- Подключение CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;  /* Центрирование элементов в body */
+        }
+
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;  /* Границы вокруг выпадающего списка */
+            border-radius: 5px;  /* Скругленные углы */
+        }
+
+        button {
+            background-color: #4CAF50;  /* Зеленый цвет кнопки */
+            color: white;
+            padding: 10px 20px;
+            border: none;  /* Убираем границы */
+            border-radius: 5px;  /* Скругляем углы */
+            cursor: pointer;  /* Меняем курсор при наведении */
+        }
+
+        button:hover {
+            background-color: #45a049;  /* Изменение цвета при наведении */
+        }
+
+    </style>
 </head>
 <body>
+<h1>Update Order Status</h1>  <!-- Заголовок страницы -->
+
+<!-- Форма для обновления статуса заказа -->
 <form th:action="@{/orders/{orderId}/status(orderId=${order.id})}" method="post">
+    <!-- Выпадающий список для выбора статуса -->
     <select th:name="newStatus">
         <option th:value="PENDING" th:text="'Pending'"></option>
         <option th:value="DELIVERED" th:text="'Delivered'"></option>
         <option th:value="CANCELLED" th:text="'Cancelled'"></option>
     </select>
+
+    <!-- Кнопка отправки формы -->
     <button type="submit" th:text="'Update Status'"></button>
 </form>
 </body>

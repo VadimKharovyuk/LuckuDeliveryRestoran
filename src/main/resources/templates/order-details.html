@@ -3,12 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Order Details</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">  <!-- Подключение CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;  /* Центрирует все элементы в body */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        table {
+            margin: 20px auto;  /* Центрирует таблицу по горизонтали */
+            border-collapse: collapse;  /* Убирает промежутки между ячейками */
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;  /* Границы ячеек */
+            text-align: left;  /* Выравнивание текста влево */
+        }
+
+        th {
+            background-color: #ddd;  /* Цвет фона заголовков */
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;  /* Подчеркивание при наведении */
+        }
+
+    </style>
 </head>
 <body>
-<h1>Order Details</h1>
+<h1>Order Details</h1>  <!-- Заголовок страницы -->
 
-<!-- Отображение деталей заказа -->
+<!-- Таблица с деталями заказа -->
 <table>
     <tr>
         <th>Customer Name</th>
@@ -32,8 +71,7 @@
     </tr>
 </table>
 
-<!-- Ссылка на список заказов -->
-<a th:href="@{/orders}">Back to All Orders</a>
-
+<!-- Ссылка для возврата к списку всех заказов -->
+<a th:href="@{/orders}">Back to All Orders</a>  <!-- Стиль ссылки обновлен -->
 </body>
 </html>

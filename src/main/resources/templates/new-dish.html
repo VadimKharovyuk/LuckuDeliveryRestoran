@@ -3,6 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Добавить новое блюдо</title>
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">  <!-- Подключение CSS-файла -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+      text-align: center;  /* Центрирует все элементы внутри body */
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+    }
+
+    label {
+      color: #333;
+      font-size: 16px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 80%;  /* Ширина элементов ввода 80% */
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;  /* Меняет цвет при наведении */
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
 </head>
 <body>
 <h1>Добавить новое блюдо</h1>
@@ -25,6 +77,6 @@
 </form>
 
 <!-- Ссылка для возвращения ко всем блюдам -->
-<a href="/dishes">Назад ко всем блюдам</a>
+<a href="/dishes">Назад ко всем блюдам</a>  <!-- Стиль ссылок обновлен -->
 </body>
 </html>

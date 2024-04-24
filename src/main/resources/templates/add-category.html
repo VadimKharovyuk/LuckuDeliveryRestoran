@@ -1,20 +1,71 @@
-<!-- resources/templates/add-category.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Add Category</title>
+  <!-- Подключение файла стилей -->
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      display: flex; /* Используем flexbox для центрирования */
+      justify-content: center; /* Центрируем по горизонтали */
+    }
+
+    .container {
+      max-width: 600px; /* Ограничиваем максимальную ширину контейнера */
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      text-align: center; /* Центрируем заголовок */
+    }
+
+    .input-text {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .button-primary {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button-primary:hover {
+      background-color: #45a049;
+    }
+
+
+  </style>
 </head>
 <body>
 <h1>Add New Category</h1>
 
+<!-- Форма для добавления новой категории -->
 <form action="/categories/add" method="post">
-  <input type="hidden" name="_csrf" value="${_csrf.token}">
+  <input type="hidden" name="_csrf" value="${_csrf.token}"> <!-- Защита от CSRF -->
 
+  <!-- Стилизация поля ввода -->
   <label for="name">Category Name:</label>
-  <input type="text" name="name" required>
+  <input type="text" name="name" required class="input-text"> <!-- Применение стилей к полю ввода -->
 
-  <button type="submit">Add Category</button>
+  <!-- Стилизация кнопки -->
+  <button type="submit" class="button-primary">Add Category</button> <!-- Применение стилей к кнопке -->
 </form>
 </body>
 </html>

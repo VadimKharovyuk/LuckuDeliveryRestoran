@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <title>Order Details</title>
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;  /* Центрирование текста */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;  /* Добавляет отступы между абзацами */
+        }
+
+        strong {
+            color: #333;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 10px;  /* Добавляет отступы к ссылкам */
+            border-radius: 5px;  /* Скругляет углы ссылок */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .edit-link {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .edit-link:hover {
+            background-color: #45a049;
+        }
+
+    </style>
 </head>
 <body>
 <h1 th:text="'Order Details: ' + ${order.id}"></h1> <!-- Заголовок с ID заказа -->
+
 
 <!-- Отображение деталей заказа -->
 <p>
@@ -35,9 +83,9 @@
 </p>
 
 <!-- Ссылка для редактирования заказа -->
-<a th:href="@{'/orders/' + ${order.id} + '/edit'}" th:text="'Edit Order'"></a>
+<a th:href="@{'/orders/' + ${order.id} + '/edit'}" class="edit-link">Edit Order</a>
 
 <!-- Ссылка для возврата к списку заказов -->
-<a th:href="@{/orders}" th:text="'Back to Orders'"></a>
+<a th:href="@{/orders}" class="edit-link">Back to Orders</a>
 </body>
 </html>
